@@ -15,7 +15,7 @@
 
 Name:           deepseek-harness-bin
 Version:        0.2.1~rc.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        DeepSeek Harness CLI and agent harness
 License:        MIT AND Apache-2.0 AND ISC AND MPL-2.0 AND BSD-3-Clause AND LGPL-3.0-or-later AND BSD-2-Clause AND Python-2.0 AND Unlicense AND 0BSD AND (MIT OR CC0-1.0)
 URL:            https://github.com/deepseek-ai/deepseek-harness
@@ -23,17 +23,12 @@ Source0:        https://registry.npmjs.org/@deepseek-ai/dsh/-/dsh-%{npmver}.tgz
 
 # Fedora 44 ships Node.js 24 as nodejs24.  The -npm-bin package provides
 # /usr/bin/npm (the plain nodejs24-npm package only provides npm-24).
-BuildRequires:  nodejs24-devel
+# Native addons use their packaged prebuilt binaries; no compiler toolchain
+# is needed.  patchelf is only used to fix the sherpa-onnx RUNPATH in %install.
 BuildRequires:  nodejs24-npm-bin
 BuildRequires:  /usr/bin/node
 BuildRequires:  /usr/bin/npm
-# node-gyp is bundled inside nodejs24-npm; npm adds its node-gyp-bin
-# directory to PATH for package lifecycle scripts.
-BuildRequires:  cmake
-BuildRequires:  gcc-c++
-BuildRequires:  make
 BuildRequires:  patchelf
-BuildRequires:  python3
 
 Requires:       nodejs24-bin
 Requires:       pnpm
@@ -92,6 +87,9 @@ HOME="$PWD" "%{buildroot}%{_bindir}/dsh" --version
 %doc README.md README.zh.md README.i18n.yaml
 
 %changelog
+* Sun Nov 01 2026 YG <yg@localhost> - 0.2.1~rc.5-2
+- Trim build dependencies after switching to packaged native prebuilds.
+
 * Sun Nov 01 2026 github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com> - 0.2.1~rc.5-1
 - Update to upstream pre-release 0.2.1-rc.5.
 
