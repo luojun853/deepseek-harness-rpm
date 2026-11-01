@@ -19,7 +19,7 @@ Fedora 44 / COPR RPM spec for **DeepSeek Harness**.
 - Fedora 44 build environment
 - COPR project with **Enable internet access during builds** enabled
 - Node.js 24 packages from Fedora 44
-- Native build tooling: `gcc-c++`, `make`, `cmake`, `python3`, `node-gyp`
+- Native build tooling: `gcc-c++`, `make`, `cmake`, `python3` (node-gyp is bundled with npm)
 
 ## Build an SRPM
 
