@@ -40,6 +40,10 @@ copr-cli build <your-copr-project> \
   ~/rpmbuild/SRPMS/deepseek-harness-bin-0.2.1~rc.4-1.fc44.src.rpm
 ```
 
+## Automation
+
+The `Update spec from upstream pre-release` workflow runs daily and on manual dispatch. It fetches the latest upstream pre-release, updates the spec version, release number, changelog, and README, commits the change, and creates a GitHub pre-release with the updated spec attached.
+
 ## Notes
 
 - The spec runs `npm install --global` during `%build`, so the COPR project must allow network access during builds.
