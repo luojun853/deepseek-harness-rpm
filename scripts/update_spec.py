@@ -63,26 +63,9 @@ def update_spec(spec_path: Path, npm_version: str) -> str:
     return rpm_version
 
 
-def update_readme(readme_path: Path, rpm_version: str) -> None:
-    if not readme_path.exists():
-        return
-    with readme_path.open("r", encoding="utf-8", newline="") as f:
-        text = f.read()
-    text, count = re.subn(
-        r"(?m)^- Package version: `[^`]+`$",
-        f"- Package version: `{rpm_version}`",
-        text,
-        count=1,
-    )
-    if count:
-        with readme_path.open("w", encoding="utf-8", newline="") as f:
-            f.write(text)
-
-
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--spec", required=True, type=Path)
-    parser.add_argument("--readme", type=Path)
     parser.add_argument("--version", required=True)
     args = parser.parse_args()
 
@@ -90,8 +73,6 @@ def main() -> None:
         raise SystemExit(f"not a pre-release version: {args.version}")
 
     rpm_version = update_spec(args.spec, args.version)
-    if args.readme:
-        update_readme(args.readme, rpm_version)
     print(f"updated to npm={args.version} rpm={rpm_version}")
 
 
