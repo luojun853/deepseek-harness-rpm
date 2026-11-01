@@ -53,11 +53,7 @@ under /usr/lib/node_modules and provides the dsh command.
 %setup -q -n package
 
 %build
-export npm_config_cache="$PWD/.npm-cache"
-export npm_config_nodedir="%{_prefix}"
-export npm_config_build_from_source=true
 export npm_config_foreground_scripts=true
-export npm_config_ignore_scripts=false
 
 mkdir -p npm-root/usr
 
