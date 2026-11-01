@@ -27,7 +27,8 @@ BuildRequires:  nodejs24-devel
 BuildRequires:  nodejs24-npm-bin
 BuildRequires:  /usr/bin/node
 BuildRequires:  /usr/bin/npm
-BuildRequires:  node-gyp
+# node-gyp is bundled inside nodejs24-npm; npm adds its node-gyp-bin
+# directory to PATH for package lifecycle scripts.
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  make
