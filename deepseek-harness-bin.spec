@@ -15,7 +15,7 @@
 
 Name:           deepseek-harness-bin
 Version:        0.2.1~rc.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        DeepSeek Harness CLI and agent harness
 License:        MIT AND Apache-2.0 AND ISC AND MPL-2.0 AND BSD-3-Clause AND LGPL-3.0-or-later AND BSD-2-Clause AND Python-2.0 AND Unlicense AND 0BSD AND (MIT OR CC0-1.0)
 URL:            https://github.com/deepseek-ai/deepseek-harness
@@ -96,5 +96,8 @@ HOME="$PWD" "%{buildroot}%{_bindir}/dsh" --version
 %doc README.md README.zh.md README.i18n.yaml
 
 %changelog
+* Sun Nov 01 2026 YG <yg@localhost> - 0.2.1~rc.4-2
+- Patch sherpa-onnx RUNPATH for Fedora check-rpaths.
+
 * Sun Nov 01 2026 YG <yg@localhost> - 0.2.1~rc.4-1
 - Initial COPR package for Fedora 44, converted from PKGBUILD.
