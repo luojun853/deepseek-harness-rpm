@@ -11,7 +11,6 @@ Fedora 44 / COPR RPM spec for **DeepSeek Harness**.
 ## Contents
 
 - `deepseek-harness-bin.spec` — RPM spec for the npm distribution of `@deepseek-ai/dsh`
-- Package version: `0.2.1~rc.4`
 - Supported architectures: `x86_64`, `aarch64`
 
 ## Requirements
@@ -42,7 +41,7 @@ copr-cli build <your-copr-project> \
 
 ## Automation
 
-The `Update spec from upstream pre-release` workflow runs daily and on manual dispatch. It fetches the latest upstream pre-release, updates the spec version, release number, changelog, and README, commits the change, and creates a GitHub pre-release with the updated spec attached.
+The `Update spec from upstream pre-release` workflow runs daily and on manual dispatch. It fetches the latest upstream pre-release, updates the spec version, release number, and changelog, then commits the change.
 
 ## Notes
 
