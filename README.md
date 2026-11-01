@@ -23,11 +23,13 @@ Fedora 44 / COPR RPM spec for **DeepSeek Harness**.
 ## Build an SRPM
 
 ```bash
+VERSION=$(awk '$1 == "%global" && $2 == "npmver" { print $3; exit }' deepseek-harness-bin.spec)
+RPM_VERSION="${VERSION/-/~}"
 mkdir -p ~/rpmbuild/{SOURCES,SPECS}
 cp deepseek-harness-bin.spec ~/rpmbuild/SPECS/
 
-curl -L -o ~/rpmbuild/SOURCES/dsh-0.2.1-rc.4.tgz \
-  https://registry.npmjs.org/@deepseek-ai/dsh/-/dsh-0.2.1-rc.4.tgz
+curl -L -o ~/rpmbuild/SOURCES/dsh-${VERSION}.tgz \
+  "https://registry.npmjs.org/@deepseek-ai/dsh/-/dsh-${VERSION}.tgz"
 
 rpmbuild -bs ~/rpmbuild/SPECS/deepseek-harness-bin.spec
 ```
@@ -36,7 +38,7 @@ Then submit the generated SRPM to COPR:
 
 ```bash
 copr-cli build <your-copr-project> \
-  ~/rpmbuild/SRPMS/deepseek-harness-bin-0.2.1~rc.4-1.fc44.src.rpm
+  ~/rpmbuild/SRPMS/deepseek-harness-bin-${RPM_VERSION}-1.fc44.src.rpm
 ```
 
 ## Automation
