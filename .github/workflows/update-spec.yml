@@ -54,6 +54,7 @@ jobs:
               echo "No upstream pre-release found" >&2
               exit 1
             fi
+            version="$tag"
           fi
           version="${version#dsh-v}"
           version="${version#v}"
