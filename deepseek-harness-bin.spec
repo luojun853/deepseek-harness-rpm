@@ -32,6 +32,7 @@ BuildRequires:  /usr/bin/npm
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  make
+BuildRequires:  patchelf
 BuildRequires:  python3
 
 Requires:       nodejs24-bin
@@ -75,6 +76,14 @@ install -d "%{buildroot}%{_prefix}"
 cp -a npm-root/usr/. "%{buildroot}%{_prefix}/"
 
 find "%{buildroot}%{_prefix}/lib/node_modules" -type d -exec chmod 0755 {} +
+
+# The prebuilt sherpa-onnx binary carries a RUNPATH from its build machine.
+# Replace it with $ORIGIN so the bundled shared libraries resolve correctly.
+for d in %{buildroot}%{_prefix}/lib/node_modules/@deepseek-ai/dsh/node_modules/sherpa-onnx-linux-*; do
+  [ -d "$d" ] || continue
+  find "$d" -type f \( -name '*.node' -o -name '*.so' -o -name '*.so.*' \) \
+    -exec patchelf --set-rpath '$ORIGIN' {} +
+done
 
 %check
 HOME="$PWD" "%{buildroot}%{_bindir}/dsh" --version
