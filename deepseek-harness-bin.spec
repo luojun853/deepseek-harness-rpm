@@ -2,7 +2,7 @@
 # Not affiliated with, endorsed by, or maintained by DeepSeek.
 
 %global npm_name @deepseek-ai/dsh
-%global npmver   0.2.1-rc.5
+%global npmver   0.2.2-alpha.3
 
 # Let COPR/rpmbuild fetch Source0 from the npm registry when it is not
 # already present in the SOURCES directory.
@@ -14,8 +14,8 @@
 %global __strip /bin/true
 
 Name:           deepseek-harness-bin
-Version:        0.2.1~rc.5
-Release:        2%{?dist}
+Version:        0.2.2~alpha.3
+Release:        1%{?dist}
 Summary:        DeepSeek Harness CLI and agent harness
 License:        MIT AND Apache-2.0 AND ISC AND MPL-2.0 AND BSD-3-Clause AND LGPL-3.0-or-later AND BSD-2-Clause AND Python-2.0 AND Unlicense AND 0BSD AND (MIT OR CC0-1.0)
 URL:            https://github.com/deepseek-ai/deepseek-harness
@@ -87,6 +87,9 @@ HOME="$PWD" "%{buildroot}%{_bindir}/dsh" --version
 %doc README.md README.zh.md README.i18n.yaml
 
 %changelog
+* Tue Nov 03 2026 github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com> - 0.2.2~alpha.3-1
+- Update to upstream pre-release 0.2.2-alpha.3.
+
 * Sun Nov 01 2026 YG <yg@localhost> - 0.2.1~rc.5-2
 - Trim build dependencies after switching to packaged native prebuilds.
 
